@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../templates/navbar';
 import axiosInstance from '../../axios';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useEffect } from 'react/cjs/react.development';
 import { useAuth } from '../../auth';
 
 
