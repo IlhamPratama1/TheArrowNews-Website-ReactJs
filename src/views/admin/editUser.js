@@ -13,6 +13,7 @@ export default function EditUser({ userData, fetchUserData }) {
 	});
 	const [postData, updateFormData] = useState(initialFormData);
     const [postImage, setPostImage] = useState('');
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
 
     const handleChange = (e) => {
 		updateFormData({
@@ -40,6 +41,7 @@ export default function EditUser({ userData, fetchUserData }) {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
+        setLoadingSubmit(true);
         let formData = new FormData();
 		formData.append('email', postData.email);
 		formData.append('user_name', postData.user_name);
@@ -51,6 +53,7 @@ export default function EditUser({ userData, fetchUserData }) {
 		axiosInstance.put(`user/myprofile/edit/`,formData
         ).then(function(res) {
             fetchUserData();
+            setLoadingSubmit(false);
             history.push({
                 pathname: '/admin/profile/',
             });
@@ -89,8 +92,9 @@ export default function EditUser({ userData, fetchUserData }) {
                         <label className="font-mont font-bold text-md">About</label>
                         <textarea style={{'height': '10rem'}} value={postData.about} onChange={handleChange} name="about" type="text" placeholder="post about" className="focus:outline-none focus:border-yellow-main p-4 w-full h-12 border"></textarea >
                     </div>
-                    <div className="space-x-2">
+                    <div className="space-x-2 flex items-center">
                         <button onClick={e => handleSubmit(e)} className="font-oswald font-bold bg-yellow lg:text-xl lg:py-4 lg:px-8">Submit</button>
+                        {loadingSubmit && <svg className="animate-spin bg-yellow h-5 w-5 mr-3" viewBox="0 0 18 18"></svg> }
                     </div>
                 </form>
             </div>

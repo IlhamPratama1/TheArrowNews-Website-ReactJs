@@ -21,6 +21,7 @@ export default function EditPost({ categories, fetchData }) {
 	const [formData, updateFormData] = useState(initialFormData);
     const [editorData, setEditorData] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
 
     const handleChange = (e) => {
 		updateFormData({
@@ -57,6 +58,7 @@ export default function EditPost({ categories, fetchData }) {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
+        setLoadingSubmit(true);
 		axiosInstance.put(`admin/edit/` + id + '/', {
 			title: formData.title,
             category: formData.category,
@@ -67,6 +69,7 @@ export default function EditPost({ categories, fetchData }) {
 			content: formData.content,
 		}).then(function(res) {
             fetchData();
+            setLoadingSubmit(false);
             history.push({
                 pathname: '/admin/posts/',
             });
@@ -120,8 +123,9 @@ export default function EditPost({ categories, fetchData }) {
                             } }
                         />                    
                     </div>
-                    <div className="space-x-2">
+                    <div className="space-x-2 flex items-center">
                         <button onClick={e => handleSubmit(e)} className="font-oswald font-bold bg-yellow lg:text-xl lg:py-4 lg:px-8">Submit</button>
+                        {loadingSubmit && <svg className="animate-spin bg-yellow h-5 w-5 mr-3" viewBox="0 0 18 18"></svg> }
                     </div>
                 </form>
             </div>

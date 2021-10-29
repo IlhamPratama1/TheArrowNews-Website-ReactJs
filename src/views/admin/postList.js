@@ -21,9 +21,9 @@ export default function PostList({ posts, draft, fetchData, fetchDraft }) {
                 setLoadingSubmit(false);
 			})
 			.then(function () {
-                setLoadingSubmit(false);
                 fetchData();
                 fetchDraft();
+                setLoadingSubmit(false);
 			});
     }
     return(
