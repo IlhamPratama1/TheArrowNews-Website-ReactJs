@@ -16,7 +16,7 @@ export default function HomeIndex() {
     const [ topPosts, setTopPosts ] = useState({ isLoading: true, data: [], length: 5 });
     const [ pageIndex, setPageIndex ] = useState(1);
     const [ hasMore, setHasMore ] = useState(true);
-    const [ imageLoaded, setImageLoaded ] = useState(false);
+    const [ imageLoaded, setImageLoaded ] = useState([false, false]);
 
     const fetchData = useCallback(async () => {
         try {
@@ -84,11 +84,14 @@ export default function HomeIndex() {
         }
     }, [fetchData, fetchTopPosts, posts.isLoading, topPosts.isLoading]);
 
-    function handleImageLoaded() {
-        setImageLoaded(true);
+    function handleImageLoaded(idx) {
+        let newArr = [...imageLoaded];
+        newArr[idx] = true;
+        setImageLoaded(newArr);
     }
 
-    const imageStyle = !imageLoaded ? "hidden" : "object-cover h-xl w-full";
+    const imageStyle = !imageLoaded[0] ? "hidden" : "object-cover h-xl w-full";
+    const imageStyle2 = !imageLoaded[1] ? "hidden" : "w-head h-head object-cover";
 
     return(
         <div className="mb-40 ">
@@ -100,10 +103,12 @@ export default function HomeIndex() {
                     </div>
                 </div>
             </div>
-            {!imageLoaded && 
-                <div className="bg-gray animate-pulse object-cover h-xl w-full"></div>
-            }
-            <Link to={"/"}><img style={{filter: `brightness(50%)`}} onLoad={handleImageLoaded} className={imageStyle} src="/static/images/pexels-markus-winkler-4160060.jpg" alt="logo" /></Link>
+            <Link to={"/"}>
+                {!imageLoaded[0] && 
+                    <div className="bg-gray animate-pulse object-cover h-xl w-full"></div>
+                }
+                <img style={{filter: `brightness(50%)`}} onLoad={() => handleImageLoaded(0)} className={imageStyle} src="/static/images/pexels-markus-winkler-4160060.jpg" alt="logo" />
+                </Link>
             <div className="px-6 space-y-10 lg:px-32">
 
                 <div className="flex justify-between">
@@ -167,7 +172,10 @@ export default function HomeIndex() {
                             </div>
                         </div> : 
                         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-0">
-                            <Link className="col-span-2" to={"/post/single/" + posts.data[0].slug}><img className="w-head h-head object-cover" alt="headline" src={posts.data[0].image} /></Link>
+                            <Link className="col-span-2" to={"/post/single/" + posts.data[0].slug}>
+                                {!imageLoaded[1] && <div className="bg-gray animate-pulse object-cover w-head h-head"></div> }
+                                <img onLoad={() => handleImageLoaded(1)} className={imageStyle2} alt="headline" src={posts.data[0].image} />
+                            </Link>
                             <div className="space-y-4">
                                 <Link to={`/category/${posts.data[0].category_name}`} className="uppercase font-mont font-bold text-md text-yellow">{posts.data[0].category_name}</Link>
                                 <Link to={"/post/single/" + posts.data[0].slug}><h1 className="font-bold font-oswald text-4xl">{posts.data[0].title}</h1></Link>

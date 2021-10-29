@@ -20,6 +20,7 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
 	});
     const [postData, updateFormData] = useState(initialFormData);
     const [postImage, setPostImage] = useState('');
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
 
     const handleChange = (e) => {
 		updateFormData({
@@ -36,6 +37,7 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
 
     function submitForm(e) {
         e.preventDefault();
+        setLoadingSubmit(true);
         let formData = new FormData();
 		formData.append('title', postData.title);
 		formData.append('slug', slugify(postData.title));
@@ -48,15 +50,18 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
 		.then((res) => {
             fetchData();
             fetchDraft();
+            setLoadingSubmit(false);
             history.replace({ pathname: '/admin/posts/' });
 		})
         .catch((err) => {
             console.log(err.response);
+            setLoadingSubmit(false);
         });
     }
 
     function submitAsDraf(e) {
         e.preventDefault();
+        setLoadingSubmit(true);
         let formData = new FormData();
 		formData.append('title', postData.title);
 		formData.append('slug', slugify(postData.title));
@@ -69,9 +74,11 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
 		.then((res) => {
             fetchData();
             fetchDraft();
+            setLoadingSubmit(false);
             history.replace({ pathname: '/admin/posts/' });
 		})
         .catch((err) => {
+            setLoadingSubmit(false);
             console.log(err.response);
         });
     }
@@ -126,9 +133,10 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
                             } }
                         />
                     </div>
-                    <div className="space-x-2">
+                    <div className="space-x-2 flex items-center">
                         <button onClick={e => submitForm(e)} className="font-oswald font-bold bg-yellow lg:text-xl lg:py-4 lg:px-8">Submit</button>
                         <button onClick={e => submitAsDraf(e)} className="font-oswald font-bold bg-blue text-white lg:text-xl lg:py-4 lg:px-8">Submit as Draft</button>
+                        {loadingSubmit && <svg className="animate-spin bg-yellow h-5 w-5 mr-3" viewBox="0 0 18 18"></svg> }
                     </div>
                 </form>
             </div>
@@ -136,7 +144,7 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
                 <div className="space-y-2">
                     <br />
                     <h1 className="font-mont font-bold opacity-60 text-md">Drafts</h1>
-                    {draft.isLoading ? <div>loading</div> :
+                    {draft.isLoading ? <div className="bg-gray animate-pulse h-12 w-full"></div> :
                         draft.data.length > 0 ?
                             draft.data.map((data, i) => {
                                 return(
@@ -150,7 +158,7 @@ export default function CreatePost({ categories, posts, draft, fetchData, fetchD
                 </div>
                 <div className="space-y-2">
                     <h1 className="font-mont font-bold opacity-60 text-md">Recent posts</h1>
-                    {posts.isLoading ? <div>loading</div> :
+                    {posts.isLoading ? <div className="bg-gray animate-pulse h-12 w-full"></div> :
                         posts.data.length > 0 ?
                             posts.data.map((post, i) => {
                                 return(

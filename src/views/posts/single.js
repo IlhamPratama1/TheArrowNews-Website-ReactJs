@@ -6,6 +6,8 @@ import axiosInstance from '../../axios';
 import MiniCard from './cards/miniCard';
 import { useAuth } from '../../auth';
 import MiniCardSkeleton from './skeleton/miniCardSkeleton';
+import AuthorView from './author/author';
+import CommentView from './comment/comment';
 
 
 export default function SinglePost() {
@@ -263,19 +265,12 @@ export default function SinglePost() {
                     </div>
                 </div>
                 :
-                <div className="text-center space-y-2 mb-12">
-                    <div className="flex justify-center">
-                        <img alt="author" src={userData.data.profile} className="w-14 h-14 rounded-full" />
-                    </div>
-                    <p className="font-mont font-bold" style={{
-                        'textDecoration': 'underline',
-                        'textDecorationColor': '#FCA311',                            
-                    }}>{userData.data.user_name}</p>
-                    <p className="font-mont opacity-60">{userData.data.email}</p>
-                    <div className="flex justify-center">
-                        <p className="w-4/6 font-mont">{userData.data.about}</p>
-                    </div>
-                </div> 
+                <AuthorView 
+                    profile={userData.data.profile}
+                    username={userData.data.user_name}
+                    email={userData.data.email}
+                    about={userData.data.about}
+                /> 
                 }
                 <div className="flex items-center space-x-4 mb-6">
                     <h1 className="uppercase font-bold font-oswald text-2xl">Related</h1>
@@ -319,19 +314,13 @@ export default function SinglePost() {
                         </div>
                         {comments.data.map((comment) => {
                             return(
-                                <div key={comment.id} className="flex items-center space-x-4 mb-6">
-                                    <img alt="author" src={comment.author_image + "/"} className="w-14 h-14 rounded-full" />
-                                    <div className="space-y-2">
-                                        <div className="flex items-center space-x-3">
-                                            <p className="font-mont font-bold" style={{
-                                                'textDecoration': 'underline',
-                                                'textDecorationColor': '#FCA311',                            
-                                            }}>{comment.author_name}</p>
-                                            <p className="font-mont font-light text-sm opacity-60">{comment.created_date}</p>
-                                        </div>
-                                        <p className="font-cooper text-md">{comment.text}</p>
-                                    </div>
-                                </div>
+                                <CommentView 
+                                    id={comment.id}
+                                    author_image={comment.author_image + "/"}
+                                    author_name={comment.author_name}
+                                    created_date={comment.created_date}
+                                    text={comment.text}
+                                />
                             );
                         })}
                         {auth.user ? 

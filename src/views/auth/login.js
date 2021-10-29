@@ -10,10 +10,11 @@ export default function LoginView() {
     const auth = useAuth();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
 
     const [formData, setFormData] = useState({
-        email: "",
-        password: ""
+        email: '',
+        password: ''
     });
     const [ error, setError ] = useState({});
 
@@ -26,6 +27,7 @@ export default function LoginView() {
 
     function PostLoginForm(e) {
         e.preventDefault();
+        setLoadingSubmit(true);
         axiosInstance
 			.post(`token/`, {
 				email: formData.email,
@@ -36,6 +38,7 @@ export default function LoginView() {
 				localStorage.setItem('refresh_token', res.data.refresh);
 				localStorage.setItem('user_id', res.data.id);
                 localStorage.setItem('user_name', res.data.username);
+                setLoadingSubmit(false);
                 auth.signin(() => {
                     history.replace(from);
                 }, localStorage.getItem('refresh_token'));
@@ -53,6 +56,7 @@ export default function LoginView() {
                     errors['detail'] = err.response.data.detail;
                 }
                 setError(errors);
+                setLoadingSubmit(false);
             });
     }
 
@@ -96,7 +100,10 @@ export default function LoginView() {
                             </div>
                             <span style={{ color: "red" }}>{error["detail"]}</span>
                             <br />
-                            <button onClick={e => PostLoginForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl lg:py-4 lg:px-8">Login</button>
+                            <div className="flex items-center space-x-3">
+                                <button onClick={e => PostLoginForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl lg:py-4 lg:px-8">Login</button>
+                                {loadingSubmit && <svg className="animate-spin bg-black h-5 w-5 mr-3" viewBox="0 0 24 24"></svg> }
+                            </div>
                         </form>
                     </div>
                 </div>

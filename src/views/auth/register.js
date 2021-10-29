@@ -15,6 +15,7 @@ export default function RegisterView() {
     });
     const [ error, setError ] = useState({});
     const [ success, setSuccess ] = useState();
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
 
     function FormOnChange(e) {
         setFormData( prevData => ({
@@ -25,10 +26,12 @@ export default function RegisterView() {
 
     function RegisterForm(e) {
         e.preventDefault();
+        setLoadingSubmit(true);
         if (formData.password !== formData.password_confirm) {
             let errors = {}
             errors['password_confirm'] = "password not match";
             setError(errors);
+            setLoadingSubmit(false);
             return;
         }
 		axiosInstance
@@ -40,6 +43,7 @@ export default function RegisterView() {
 			.then((res) => {
                 setSuccess('Register Success');
                 PostLoginForm();
+                setLoadingSubmit(false);
 			})
             .catch(function(err) {
                 let errors = {}
@@ -53,6 +57,7 @@ export default function RegisterView() {
                     errors['user_name'] = err.response.data.user_name[0];
                 }
                 setError(errors);
+                setLoadingSubmit(false);
             });
     }
 
@@ -122,7 +127,10 @@ export default function RegisterView() {
                             </div>
                             <span style={{ color: "green" }}>{success}</span>
                             <br />
-                            <button onClick={e => RegisterForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl lg:py-4 lg:px-8">Register</button>
+                            <div className="flex items-center space-x-3">
+                                <button onClick={e => RegisterForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl lg:py-4 lg:px-8">Register</button>
+                                {loadingSubmit && <svg className="animate-spin bg-black h-5 w-5 mr-3" viewBox="0 0 24 24"></svg> }
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../../axios';
 import { DrafCard, DrafCard2 } from '../posts/adminCards/drafCard';
 import { RecentPostCard, RecentPostCard2 } from '../posts/adminCards/recentCard';
 
 export default function PostList({ posts, draft, fetchData, fetchDraft }) {
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
+
     function handleDelete(e, id) {
         e.preventDefault();
+        setLoadingSubmit(true);
         axiosInstance
 			.delete('admin/delete/' + id)
 			.catch(function (error) {
@@ -15,10 +18,12 @@ export default function PostList({ posts, draft, fetchData, fetchDraft }) {
 					console.log(error.response.status);
 					console.log(error.response.headers);
 				}
+                setLoadingSubmit(false);
 			})
 			.then(function () {
-                    fetchData();
-                    fetchDraft();
+                setLoadingSubmit(false);
+                fetchData();
+                fetchDraft();
 			});
     }
     return(
@@ -55,16 +60,19 @@ export default function PostList({ posts, draft, fetchData, fetchDraft }) {
                             }) 
                         }
                     </tbody>
-                </table> : <div className="bg-blue p-4 font-oswald text-xl text-white">You haven't post anything yet</div> : <div>loading</div>
+                </table> : <div className="bg-blue p-4 font-oswald text-xl text-white">You haven't post anything yet</div> : <div className="bg-gray animate-pulse h-16 w-full"></div>
                 }
                 <br />
-                <Link to="/admin/posts/create" className="bg-gray px-4 py-4 font-oswald pointer font-bold">ADD NEW POST</Link>
+                <div className="flex items-center space-x-2">
+                    <Link to="/admin/posts/create" className="bg-gray px-4 py-4 font-oswald pointer font-bold">ADD NEW POST</Link>
+                    {loadingSubmit && <svg className="animate-spin bg-yellow h-5 w-5 mr-3" viewBox="0 0 18 18"></svg> }
+                </div>
             </div>
             <div className="col-span-2 space-y-6">
                 <div className="space-y-2">
                     <br />
                     <h1 className="font-mont font-bold opacity-60 text-md">Drafts</h1>
-                    {draft.isLoading ? <div>loading</div> :
+                    {draft.isLoading ? <div className="bg-gray animate-pulse h-12 w-full"></div> :
                         draft.data.length > 0 ?
                             draft.data.map((data, i) => {
                                 return(
@@ -78,7 +86,7 @@ export default function PostList({ posts, draft, fetchData, fetchDraft }) {
                 </div>
                 <div className="space-y-2">
                     <h1 className="font-mont font-bold opacity-60 text-md">Recent posts</h1>
-                    {posts.isLoading ? <div>loading</div> :
+                    {posts.isLoading ? <div className="bg-gray animate-pulse h-12 w-full"></div> :
                         posts.data.length > 0 ?
                             posts.data.map((post, i) => {
                                 return(

@@ -10,18 +10,22 @@ export default function CreateCategory({ posts, draft, fetchCateg }) {
     const handleChange = (e) => {
 		setName(e.target.value);
 	};
-    
+    const [ loadingSubmit, setLoadingSubmit ] = useState(false);
+
     function subminCategory(e) {
         e.preventDefault();
+        setLoadingSubmit(true);
         axiosInstance
 			.post(`post/category/`, {
 				name: name
 			})
 			.then((res) => {
                 fetchCateg();
+                setLoadingSubmit(false);
                 history.replace({ pathname: '/admin/' });
 			})
             .catch((res) => {
+                setLoadingSubmit(false);
                 console.log(res);
             });
     }
@@ -36,14 +40,17 @@ export default function CreateCategory({ posts, draft, fetchCateg }) {
                         <label className="font-mont font-bold text-md">Name</label>
                         <input value={name} onChange={handleChange} name="name" type="text" placeholder="category name" className="focus:outline-none focus:border-yellow-main p-4 w-full h-12 border"></input>
                     </div>
-                    <button onClick={e => subminCategory(e)} className="font-oswald font-bold bg-yellow lg:text-xl lg:py-4 lg:px-8">Submit</button>
+                    <div className="flex items-center space-x-2">
+                        <button onClick={e => subminCategory(e)} className="font-oswald font-bold bg-yellow lg:text-xl lg:py-4 lg:px-8">Submit</button>
+                        {loadingSubmit && <svg className="animate-spin bg-yellow h-5 w-5 mr-3" viewBox="0 0 18 18"></svg> }
+                    </div>
                 </form>
             </div>
             <div className="col-span-2 space-y-6">
                 <div className="space-y-2">
                     <br />
                     <h1 className="font-mont font-bold opacity-60 text-md">Drafts</h1>
-                    {draft.isLoading ? <div>loading</div> :
+                    {draft.isLoading ? <div className="bg-gray animate-pulse h-12 w-full"></div> :
                         draft.data.length > 0 ?
                             draft.data.map((data, i) => {
                                 return(
@@ -57,7 +64,7 @@ export default function CreateCategory({ posts, draft, fetchCateg }) {
                 </div>
                 <div className="space-y-2">
                     <h1 className="font-mont font-bold opacity-60 text-md">Recent posts</h1>
-                    {posts.isLoading ? <div>loading</div> :
+                    {posts.isLoading ? <div className="bg-gray animate-pulse h-12 w-full"></div> :
                         posts.data.length > 0 ?
                             posts.data.map((post, i) => {
                                 return(

@@ -10,10 +10,6 @@ export default function SignOut() {
 	useEffect(() => {
 		axiosInstance.post('user/logout/blacklist/', {
 			refresh_token: localStorage.getItem('refresh_token'),
-		}).then(function (res) {
-			console.log(res);
-		}).catch(function (err) {
-			console.log(err);
 		});
 		localStorage.removeItem('access_token');
 		localStorage.removeItem('refresh_token');
