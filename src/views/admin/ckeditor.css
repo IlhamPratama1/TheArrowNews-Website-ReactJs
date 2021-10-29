@@ -1,0 +1,14 @@
+.ck.ck-editor__editable_inline {
+    height: 125px;
+    flex: 1 1 auto;
+}
+
+.ck.ck-content ul,
+.ck.ck-content ul li{
+  list-style-type: inherit;
+}
+
+.ck.ck-content ul {
+  /* Default user agent stylesheet, you can change it to your needs. */
+  padding-left: 40px;
+}
