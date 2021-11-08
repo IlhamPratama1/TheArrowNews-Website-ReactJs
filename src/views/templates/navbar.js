@@ -16,9 +16,9 @@ export default function Navbar({ handleSidebar }) {
 
     function CheckPath() {
         if(location.pathname === '/login' || location.pathname === '/register' || location.pathname.includes('/admin')) {
-            return <Link className="w-7/12" to="/"><img src="/static/icons/ham.svg" alt="logo" /></Link>
+            return <Link className="w-6/12 lg:w-7/12" to="/"><img src="/static/icons/ham.svg" alt="logo" /></Link>
         } else {
-            return <button onClick={handleSidebar} className="w-7/12"><img src="/static/images/ham.png" alt="logo" /></button>
+            return <button onClick={handleSidebar} className="w-5/12 lg:w-7/12"><img src="/static/images/ham.png" alt="logo" /></button>
         }
     }
 
@@ -29,7 +29,7 @@ export default function Navbar({ handleSidebar }) {
                 <div className="flex">
                     <CheckLogo />
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center justify-end">
                     <CheckPath />
                 </div>
             </div>                    

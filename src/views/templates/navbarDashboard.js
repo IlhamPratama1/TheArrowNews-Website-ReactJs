@@ -41,7 +41,7 @@ export default function NavbarDashboard({ children }) {
                     </div>
                 </div>
             </div>
-            <div className="col-span-5 lg:pt-10 pr-16">
+            <div className="lg:col-span-5 lg:pt-10 lg:pr-16">
                 {children}
             </div>
         </div>

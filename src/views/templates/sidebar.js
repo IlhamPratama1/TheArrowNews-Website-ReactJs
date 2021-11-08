@@ -44,7 +44,7 @@ export default function Sidebar({ sidebarOpen }) {
                         'textDecorationColor': '#FCA311',                            
                     }}>{localStorage.getItem('user_name')}</p></Link>
                     <br />
-                    <Link to="/logout" className="font-oswald font-bold bg-yellow lg:text-xl lg:py-3 lg:px-10 cursor pointer">Logout</Link>
+                    <Link to="/logout" className="font-oswald font-bold bg-yellow lg:text-xl px-6 py-2 lg:py-3 lg:px-10 cursor pointer">Logout</Link>
                 </div> :
                 <div className="space-y-4">
                     <Link to="/login" className="font-cooper uppercase font-bold lg:text-xl cursor-pointer"><p style={{
@@ -52,7 +52,7 @@ export default function Sidebar({ sidebarOpen }) {
                         'textDecorationColor': '#FCA311',                            
                     }}>Login</p></Link>
                     <br />
-                    <Link to="/register" className="font-oswald font-bold bg-yellow lg:text-xl lg:py-3 lg:px-10 cursor pointer">Register</Link>
+                    <Link to="/register" className="font-oswald font-bold bg-yellow px-6 py-2 lg:text-xl lg:py-3 lg:px-10 cursor pointer">Register</Link>
                 </div>
                 }
             </div>

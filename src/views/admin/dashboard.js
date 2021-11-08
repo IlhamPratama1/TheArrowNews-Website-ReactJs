@@ -6,12 +6,12 @@ import { AdminCard, AdminCard2, CreateAdminCard, EmptyAdminCard } from "../posts
 
 export default function AdminDashboardView({ posts, categories, userData }) {
     return(
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-y-2 gap-x-8">
-            <div className="col-span-4 space-y-6">
+        <div className="my-24 lg:my-0 mx-6 lg:mx-0 grid grid-cols-1 lg:grid-cols-6 gap-y-6 lg:gap-y-2 lg:gap-x-8">
+            <div className="lg:col-span-4 space-y-6">
                 <div className="space-y-2">
                     <h1 className="font-oswald font-bold text-lg">Posts</h1>
                     <h1 className="font-mont font-bold opacity-60 text-md">Popular posts</h1>
-                    <div className="flex space-x-6">
+                    <div className="space-y-3 lg:space-y-0 lg:flex lg:space-x-6">
                         {posts.isLoading ? <div className="w-64 bg-gray rounded-sm animate-pulse"></div> :
                             posts.data.length > 0 ?
                                 posts.data.map((post, i) => {
@@ -39,7 +39,7 @@ export default function AdminDashboardView({ posts, categories, userData }) {
                 </div>
                 <div className="space-y-2">
                     <h1 className="font-oswald font-bold text-lg">Categories</h1>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-4 gap-y-3 lg:gap-y-0">
                         <div className="space-y-2">
                             <h1 className="font-mont font-bold opacity-60 text-md">Popular</h1>
                             <div className="space-y-4">

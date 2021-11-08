@@ -5,11 +5,11 @@ export function CategoryCard({ title, about, posts, likes, views }) {
         <div className="bg-yellow w-full p-4 rounded-sm">
             <div className="grid grid-cols-2">
                 <div className="space-y-2">
-                    <h1 className="font-oswald font-bold text-2xl uppercase">{title}</h1>
+                    <h1 className="font-oswald font-bold text-xl lg:text-2xl uppercase">{title}</h1>
                     <p className="font-cooper text-xs">{about}</p>
                 </div>
                 <div className="space-y-2">
-                    <div className="flex justify-center space-x-6">
+                    <div className="flex justify-center space-x-3 lg:space-x-6">
                         <div className="text-center">
                             <p className="font-oswald font-bold text-3xl">{posts}</p>
                             <p className="font-mont text-sm">posts</p>
@@ -38,7 +38,7 @@ export function CategoryCard2({ title, about, posts, likes, views }) {
                     <p className="font-cooper text-xs">{about}</p>
                 </div>
                 <div className="space-y-2">
-                    <div className="flex justify-center space-x-6">
+                    <div className="flex justify-center space-x-3 lg:space-x-6">
                         <div className="text-center">
                             <p className="font-oswald font-bold text-3xl">{posts}</p>
                             <p className="font-mont text-sm">posts</p>
