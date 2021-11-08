@@ -20,13 +20,13 @@ export default function LandCard({ image, category, title, author, excerpt, view
             <div className="col-span-2 space-y-2">
                 <Link to={`/category/${category}`} className="uppercase font-mont font-bold text-md text-yellow text-sm">{category}</Link>
                 <Link to={"/post/single/" + slug} ><h1 className="font-bold font-oswald text-2xl">{title}</h1></Link>
-                <div className="flex items-center space-x-2">
+                <Link to={"/author/" + author} className="flex items-center space-x-2">
                     <img alt="author" src={profile} className="w-9 h-9 rounded-full" />
                     <p className="font-mont text-sm" style={{
                         'textDecoration': 'underline',
                         'textDecorationColor': '#FCA311',                            
                     }}>{author}</p>
-                </div>
+                </Link>
                 <p className="font-cooper">{excerpt.slice(0, 370)}...</p>
                 <div className="flex items-center space-x-4">
                     <img alt="like" src="/static/icons/file.svg" className="w-4	h-4" />

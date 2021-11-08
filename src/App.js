@@ -13,6 +13,7 @@ import Navbar from './views/templates/navbar';
 import Sidebar from './views/templates/sidebar';
 import SearchPost from './views/posts/searchPost';
 import Footer from './views/templates/footer';
+import UserPost from './views/posts/userPost';
 
 function App() {
   const [ sidebarOpen, setSideOpen ] = useState(false);
@@ -39,6 +40,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/category/:slug" component={CategoryPost} />
+              <Route path="/author/:user" component={UserPost} />
               <Route path="/search/:slug" component={SearchPost} />
               <Route path="/login" component={LoginView} />
               <Route path="/register" component={RegisterView} />

@@ -200,13 +200,13 @@ export default function SinglePost() {
                         <h1 className="text-4xl lg:text-6xl uppercase font-oswald font-bold text-black">{post.data.title}</h1>
                         <p className="font-cooper opacity-60 text-sm">{post.data.published}</p>
                         <p className="font-mont text-lg">{post.data.excerpt}</p>
-                        <div className="flex items-center space-x-4">
+                        <Link to={"/author/" + post.data.author_name} className="flex items-center space-x-4">
                             <img alt="author" src={post.data.author_image}className="w-12 h-12 rounded-full" />
                                 <p className="font-mont" style={{
                                     'textDecoration': 'underline',
                                     'textDecorationColor': '#FCA311',                            
                                 }}>{post.data.author_name}</p>
-                        </div>
+                        </Link>
                     </div>
                 }
                 { post.isLoading ? 
@@ -312,9 +312,10 @@ export default function SinglePost() {
                             <h1 className="uppercase font-bold font-oswald text-2xl">Comments ({comments.data.length})</h1>
                             <div className="w-7/12 lg:w-3/12 h-2 bg-blue"></div>
                         </div>
-                        {comments.data.map((comment) => {
+                        {comments.data.map((comment, i) => {
                             return(
                                 <CommentView 
+                                    key={i}
                                     id={comment.id}
                                     author_image={comment.author_image + "/"}
                                     author_name={comment.author_name}
@@ -329,7 +330,7 @@ export default function SinglePost() {
                                 <label className="font-mont uppercase font-bold text-lg">Post new comment</label>
                                 <input value={commentPost} onChange={e => CommentHandler(e)} name="comment" type="text" placeholder="enter your comment" className="focus:outline-none focus:border-yellow-main p-4 w-full h-12 border"></input>
                             </div>
-                            <button onClick={e => PostComment(e)} className="font-oswald font-bold bg-yellow text-xl py-2 px-8">Login</button>
+                            <button onClick={e => PostComment(e)} className="font-oswald font-bold bg-yellow text-xl py-2 px-8">Post</button>
                         </form>
                         : null }
                     </div>

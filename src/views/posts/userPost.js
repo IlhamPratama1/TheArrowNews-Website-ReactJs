@@ -6,15 +6,15 @@ import axiosInstance from '../../axios';
 import LandCard from './cards/landCard';
 import LandCardSkeleton from './skeleton/landCardSkeleton';
 
-export default function CategoryPost() {
-    const { slug } = useParams();
+export default function UserPost() {
+    const { user } = useParams();
     const [ posts, setPosts ] = useState({ isLoading: true, data: [], length: 5 });
     const [ pageIndex, setPageIndex ] = useState(1);
     const [ count, setCount ] = useState(0);
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await axiosInstance.get(`category/${slug}/?p=${pageIndex}`);
+            const response = await axiosInstance.get(`author/${user}/?p=${pageIndex}`);
             if (response.status === 200) {
                 setCount(response.data.count);
                 setPosts({
@@ -26,7 +26,7 @@ export default function CategoryPost() {
         } catch (error) {
             throw error;
         }
-    }, [pageIndex, slug]);
+    }, [pageIndex, user]);
 
     function ChangePage(index) {
         if(index !== pageIndex) {
@@ -65,8 +65,8 @@ export default function CategoryPost() {
                 <Navbar />
                 <div className="h-2/6 flex items-end px-8 lg:px-32">
                     <div className="w-44r space-y-3">
-                        <Link to="/" className="text-xs	uppercase py-2 px-2 bg-yellow font-mont font-bold">category</Link>
-                        <h1 className="text-4xl uppercase font-oswald font-bold text-white">{slug}</h1>
+                        <Link to="/" className="text-xs	uppercase py-2 px-2 bg-yellow font-mont font-bold">author</Link>
+                        <h1 className="text-4xl uppercase font-oswald font-bold text-white">{user}</h1>
                     </div>
                 </div>
             </div>

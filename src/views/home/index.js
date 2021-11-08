@@ -113,12 +113,12 @@ export default function HomeIndex() {
 
                 <div className="lg:flex justify-between px-2 lg:px-32">
                     <div className="flex">
-                        <Link to="/category/digital" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Digital</Link>
-                        <Link to="/category/education" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Education</Link>
-                        <Link to="/category/social" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Social</Link>
-                        <Link to="/category/politics" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">politics</Link>
-                        <Link to="/category/nature" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Nature</Link>
-                        <Link to="/category/people" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">People</Link>
+                        <Link to="/category/digital" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Digital</Link>
+                        <Link to="/category/education" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Education</Link>
+                        <Link to="/category/social" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Social</Link>
+                        <Link to="/category/politics" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">politics</Link>
+                        <Link to="/category/nature" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Nature</Link>
+                        <Link to="/category/people" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">People</Link>
                     </div>
                     {auth.user ?
                     <div className="invisible flex items-center  lg:visible">
@@ -179,13 +179,13 @@ export default function HomeIndex() {
                             <div className="space-y-4">
                                 <Link to={`/category/${posts.data[0].category_name}`} className="uppercase font-mont font-bold text-md text-yellow">{posts.data[0].category_name}</Link>
                                 <Link to={"/post/single/" + posts.data[0].slug}><h1 className="font-bold font-oswald text-4xl">{posts.data[0].title}</h1></Link>
-                                <div className="flex items-center space-x-4">
+                                <Link to={"/author/" + posts.data[0].author_name} className="flex items-center space-x-4">
                                     <img alt="author" src={posts.data[0].author_image} className="w-12 h-12 rounded-full" />
                                     <p className="font-mont" style={{
                                         'textDecoration': 'underline',
                                         'textDecorationColor': '#FCA311',                            
                                     }}>{posts.data[0].author_name}</p>
-                                </div>
+                                </Link>
                                 <p className="font-cooper">{(posts.data[0].excerpt).slice(0, 375)}...</p>
                                 <div className="flex items-center space-x-4">
                                     <img alt="like" src="/static/icons/file.svg" className="w-6	h-6" />

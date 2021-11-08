@@ -18,10 +18,10 @@ export default function MiniCard({ img, title, category, author, slug }) {
                 <Link to={"/post/single/" + slug} ><img onLoad={handleImageLoaded} className={imageStyle} alt="headline" src={img} /></Link>
                 <Link to={`/category/${category}`} className="uppercase font-mont font-bold text-md text-yellow">{category}</Link>
                 <Link to={"/post/single/" + slug} ><h1 className="font-bold font-oswald text-2xl">{title}</h1></Link>
-                <p className="font-mont text-sm" style={{
+                <Link to={"/author/" + author} className="font-mont text-sm" style={{
                     'textDecoration': 'underline',
                     'textDecorationColor': '#FCA311',                            
-                }}>{author}</p>
+                }}>{author}</Link>
             </div>
         </div>
     );
