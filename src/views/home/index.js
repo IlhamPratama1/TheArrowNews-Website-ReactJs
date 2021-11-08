@@ -111,7 +111,7 @@ export default function HomeIndex() {
                 </Link>
             <div className="space-y-10">
 
-                <div className="lg:flex justify-between px-2 lg:px-32">
+                <div className="lg:flex justify-between lg:px-32">
                     <div className="flex">
                         <Link to="/category/digital" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Digital</Link>
                         <Link to="/category/education" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Education</Link>
