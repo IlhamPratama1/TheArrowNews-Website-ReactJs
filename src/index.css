@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 'normal';
+    src:url('./fonts/Montserrat-Bold.ttf') format("truetype"),
+        url('./fonts/Montserrat-BoldItalic.ttf') format("truetype"),
+        url('./fonts/Montserrat-Black.ttf') format("truetype"),
+        url('./fonts/Montserrat-BlackItalic.ttf') format("truetype"),
+        url('./fonts/Montserrat-ExtraBold.ttf') format("truetype"),
+        url('./fonts/Montserrat-ExtraBoldItalic.ttf') format("truetype"),
+        url('./fonts/Montserrat-ExtraLight.ttf') format("truetype"),
+        url('./fonts/Montserrat-ExtraLightItalic.ttf') format("truetype"),
+        url('./fonts/Montserrat-Light.ttf') format("truetype"),
+        url('./fonts/Montserrat-LightItalic.ttf') format("truetype"),
+        url('./fonts/Montserrat-Medium.ttf') format("truetype"),
+        url('./fonts/Montserrat-Italic.ttf') format("truetype"),
+  }
+  @font-face {
+    font-family: 'Oswald';
+    font-weight: 'normal';
+    src: url('./fonts/Oswald.ttf') format("truetype");
+  }
+  @font-face {
+    font-family: 'Cooper Hewitt';
+    font-weight: 'normal';
+    src:url('./fonts/CooperHewitt-Bold.otf') format("opentype"),
+        url('./fonts/CooperHewitt-BoldItalic.otf') format("opentype"),
+        url('./fonts/CooperHewitt-Book.otf') format("opentype"),
+        url('./fonts/CooperHewitt-BookItalic.otf') format("opentype"),
+        url('./fonts/CooperHewitt-Heavy.otf') format("opentype"),
+        url('./fonts/CooperHewitt-HeavyItalic.otf') format("opentype"),
+        url('./fonts/CooperHewitt-Light.otf') format("opentype"),
+        url('./fonts/CooperHewitt-LightItalic.otf') format("opentype"),
+        url('./fonts/CooperHewitt-Medium.otf') format("opentype"),
+        url('./fonts/CooperHewitt-MediumItalic.otf') format("opentype"),
+        url('./fonts/CooperHewitt-Semibold.otf') format("opentype"),
+        url('./fonts/CooperHewitt-SemiboldItalic.otf') format("opentype"),
+        url('./fonts/CooperHewitt-Thin.otf') format("opentype"),
+        url('./fonts/CooperHewitt-ThinItalic.otf') format("opentype"),
+  }
+}
