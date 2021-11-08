@@ -89,12 +89,12 @@ export default function RegisterView() {
             <div className="w-full absolute z-10">
                 <Navbar />
             </div>
-            <div className="grid grid-cols-2">
-                <div className="">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="hidden lg:block">
                     <img className="h-screen w-full object-cover" alt="auth" src="/static/images/auth_image.png" />
                 </div>
                 <div className="flex items-center">
-                    <div className="m-auto space-y-12">
+                    <div className="my-48 mx-8 lg:m-auto space-y-12">
                         <div className="flex items-end space-x-4">
                             <h1 className="font-oswald font-bold text-5xl uppercase">Register</h1>
                             <p className="font-oswald text-lg">or</p>
@@ -128,7 +128,7 @@ export default function RegisterView() {
                             <span style={{ color: "green" }}>{success}</span>
                             <br />
                             <div className="flex items-center space-x-3">
-                                <button onClick={e => RegisterForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl lg:py-4 lg:px-8">Register</button>
+                                <button onClick={e => RegisterForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl px-6 py-2 lg:py-4 lg:px-8">Register</button>
                                 {loadingSubmit && <svg className="animate-spin bg-black h-5 w-5 mr-3" viewBox="0 0 24 24"></svg> }
                             </div>
                         </form>

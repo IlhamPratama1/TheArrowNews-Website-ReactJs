@@ -113,12 +113,12 @@ export default function HomeIndex() {
 
                 <div className="lg:flex justify-between px-2 lg:px-32">
                     <div className="flex">
-                        <Link to="/category/digital" className="font-mont font-semibold bg-gray text-xs py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Digital</Link>
-                        <Link to="/category/education" className="font-mont font-semibold bg-gray text-xs py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Education</Link>
-                        <Link to="/category/social" className="font-mont font-semibold bg-gray text-xs py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Social</Link>
-                        <Link to="/category/politics" className="font-mont font-semibold bg-gray text-xs py-4 px-2 lg:text-lg lg:py-7 lg:px-8">politics</Link>
-                        <Link to="/category/nature" className="font-mont font-semibold bg-gray text-xs py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Nature</Link>
-                        <Link to="/category/people" className="font-mont font-semibold bg-gray text-xs py-4 px-2 lg:text-lg lg:py-7 lg:px-8">People</Link>
+                        <Link to="/category/digital" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Digital</Link>
+                        <Link to="/category/education" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Education</Link>
+                        <Link to="/category/social" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Social</Link>
+                        <Link to="/category/politics" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">politics</Link>
+                        <Link to="/category/nature" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Nature</Link>
+                        <Link to="/category/people" className="font-mont font-semibold bg-gray text-sm py-4 px-2 lg:text-lg lg:py-7 lg:px-8">People</Link>
                     </div>
                     {auth.user ?
                     <div className="invisible flex items-center  lg:visible">

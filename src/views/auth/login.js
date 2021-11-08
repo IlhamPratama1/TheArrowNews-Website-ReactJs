@@ -71,12 +71,12 @@ export default function LoginView() {
             <div className="w-full absolute z-10">
                 <Navbar />
             </div>
-            <div className="grid grid-cols-2">
-                <div className="">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="hidden lg:block">
                     <img className="h-screen w-full object-cover" alt="auth" src="/static/images/auth_image.png" />
                 </div>
                 <div className="flex items-center">
-                    <div className="m-auto space-y-16">
+                    <div className="my-48 m-auto lg:m-auto space-y-16">
                         <div className="flex items-end space-x-4">
                             <h1 className="font-oswald font-bold text-5xl uppercase">Login</h1>
                             <p className="font-oswald text-lg">or</p>
@@ -85,7 +85,7 @@ export default function LoginView() {
                                 'textDecorationColor': '#FCA311',                            
                             }}>Register</Link>
                         </div>
-                        <form className="space-y-4 w-98">
+                        <form className="space-y-4 w-full lg:w-98">
                             <div className="space-y-2">
                                 <label className="font-mont uppercase font-bold text-lg">Email</label>
                                 <input name="email" onChange={FormOnChange} value={formData.email} type="text" placeholder="enter your username" className="focus:outline-none focus:border-yellow-main p-4 w-full h-12 border"></input>
@@ -101,7 +101,7 @@ export default function LoginView() {
                             <span style={{ color: "red" }}>{error["detail"]}</span>
                             <br />
                             <div className="flex items-center space-x-3">
-                                <button onClick={e => PostLoginForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl lg:py-4 lg:px-8">Login</button>
+                                <button onClick={e => PostLoginForm(e)} className="font-oswald font-bold bg-yellow lg:text-2xl px-6 py-2 lg:py-4 lg:px-8">Login</button>
                                 {loadingSubmit && <svg className="animate-spin bg-black h-5 w-5 mr-3" viewBox="0 0 24 24"></svg> }
                             </div>
                         </form>
