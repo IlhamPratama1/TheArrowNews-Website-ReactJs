@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../templates/navbar';
 import { Link, useHistory } from 'react-router-dom';
 import axiosInstance from '../../axios';
 import { useAuth } from '../../auth';
@@ -85,10 +84,7 @@ export default function RegisterView() {
     });
 
     return(
-        <div className="container mx-auto">
-            <div className="w-full absolute z-10">
-                <Navbar />
-            </div>
+        <div className="mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="hidden lg:block">
                     <img className="h-screen w-full object-cover" alt="auth" src="/static/images/auth_image.png" />

@@ -91,7 +91,7 @@ export default function HomeIndex() {
     }
 
     const imageStyle = !imageLoaded[0] ? "hidden" : "object-cover h-xl w-full";
-    const imageStyle2 = !imageLoaded[1] ? "hidden" : "w-head h-head object-cover";
+    const imageStyle2 = !imageLoaded[1] ? "hidden" : "w-full h-head object-cover";
 
     return(
         <div className="mb-40 ">
@@ -111,7 +111,7 @@ export default function HomeIndex() {
                 </Link>
             <div className="space-y-10">
 
-                <div className="lg:flex justify-between lg:px-32">
+                <div className="lg:flex justify-between px-2 lg:px-32">
                     <div className="flex">
                         <Link to="/category/digital" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Digital</Link>
                         <Link to="/category/education" className="font-mont font-semibold bg-gray text-md py-4 px-2 lg:text-lg lg:py-7 lg:px-8">Education</Link>
@@ -143,7 +143,7 @@ export default function HomeIndex() {
                     <div className="col-span-4 space-y-6 mb-12">
                         <div className="flex items-center space-x-4">
                             <h1 className="uppercase font-bold font-oswald text-2xl">Headline</h1>
-                            <div className="w-full lg:w-headl h-2 bg-blue"></div>
+                            <div className="w-full xl:w-24 2xl:w-headl h-2 bg-blue"></div>
                         </div>
                         { posts.isLoading ?
                         <div className="animate-pulse grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-x-4">
@@ -171,7 +171,7 @@ export default function HomeIndex() {
                                 </div>
                             </div>
                         </div> : 
-                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-0">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
                             <Link className="col-span-2" to={"/post/single/" + posts.data[0].slug}>
                                 {!imageLoaded[1] && <div className="bg-gray animate-pulse object-cover w-head h-head"></div> }
                                 <img onLoad={() => handleImageLoaded(1)} className={imageStyle2} alt="headline" src={posts.data[0].image} />

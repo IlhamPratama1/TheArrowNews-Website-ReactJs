@@ -5,7 +5,6 @@ import {
     useRouteMatch
   } from "react-router-dom";
 import AdminDashboardView from './dashboard';
-import Navbar from "../templates/navbar";
 import NavbarDashboard from '../templates/navbarDashboard';
 import { Redirect } from 'react-router';
 import PostList from './postList';
@@ -98,10 +97,7 @@ export default function AdminIndexView() {
     }, [fetchAllData]);
 
     return(
-        <div className="container mx-auto">
-            <div className="w-full absolute z-10">
-                <Navbar />
-            </div>
+        <div className="mx-auto">
             <NavbarDashboard>
                 <Switch>
                     <Route path={`${path}/dashboard`}>
