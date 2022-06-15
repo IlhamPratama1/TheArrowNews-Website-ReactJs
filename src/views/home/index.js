@@ -72,8 +72,6 @@ export default function HomeIndex() {
             } else {
                 setHasMore(false);
             }
-            console.log(pageIndex);
-            console.log(hasMore);
         })
     }
     

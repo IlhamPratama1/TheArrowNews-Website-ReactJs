@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://ilhampratama.pythonanywhere.com/api/';
+const baseURL = 'http://ilhampratama.pythonanywhere.com/api/';
 let isRefreshing = false;
 let failedQueue = [];
 
